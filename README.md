@@ -2,9 +2,9 @@ Aprobecho este apartado para decirte que:
 
 segueme en mis redes sociales
 
-IG:_alejo_tobar_
+IG:_ alejo_tobar_
 
-tiktok:_aleyiu_
+tiktok:_ Aleyiu_
 
 Discord:Aleyiu
 
