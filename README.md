@@ -1,6 +1,6 @@
 Aprobecho este apartado para decirte que:
 
-segueme en mis redes sociales
+Sigueme en mis redes sociales
 
 IG:_ alejo_tobar_
 
