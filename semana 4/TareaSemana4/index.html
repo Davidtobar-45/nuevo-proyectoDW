@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Promedios</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .contenedor {
+      background-color: #c1c1c1;
+      padding: 20px;
+      width: 400px;
+      border-radius: 8px;
+    }
+    input[type="number"] {
+      padding: 8px;
+      width: 100px;
+    }
+    button {
+      padding: 8px 12px;
+      margin: 5px 2px;
+    }
+    .notas {
+      margin-top: 20px;
+    }
+    .nota {
+      background: #fff;
+      padding: 5px;
+      border: 1px solid #ffffff;
+      margin-bottom: 5px;
+    }
+    .resultado {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="contenedor">
+  <h2>Calculadora de Promedios</h2>
+  <input type="number" id="notaInput" min="0" max="10" placeholder="NOTA">
+  <button onclick="agregarNota()">Agregar Nota</button>
+  <button onclick="calcularPromedio()">Calcular Promedio</button>
+  <button onclick="resetear()">Reset</button>
+
+  <div class="notas" id="listaNotas"></div>
+  <div class="resultado" id="resultado"></div>
+</div>
+
+<script>
+  let notas = [];
+
+  function agregarNota() {
+    const input = document.getElementById('notaInput');
+    const nota = parseFloat(input.value);
+
+    if (isNaN(nota) || nota < 0 || nota > 10) {
+      alert('Ingrese una nota válida entre 0 y 10');
+      return;
+    }
+
+    notas.push(nota);
+    mostrarNotas();
+    input.value = '';
+    input.focus();
+  }
+
+  function mostrarNotas() {
+    const lista = document.getElementById('listaNotas');
+    lista.innerHTML = '';
+
+    notas.forEach((nota, index) => {
+      const div = document.createElement('div');
+      div.className = 'nota';
+      div.textContent = `Nota ${index + 1}: ${nota}`;
+      lista.appendChild(div);
+    });
+  }
+
+  function calcularPromedio() {
+    if (notas.length === 0) {
+      alert('Agregue al menos una nota');
+      return;
+    }
+
+    const suma = notas.reduce((acc, val) => acc + val, 0);
+    const promedio = suma / notas.length;
+    const resultado = document.getElementById('resultado');
+    resultado.innerHTML = `Promedio: ${promedio.toFixed(2)} - `;
+
+    if (promedio >= 7) {
+      resultado.innerHTML += '<span style="color: green;">Aprobado</span>';
+    } else {
+      resultado.innerHTML += '<span style="color: red;">Reprobado</span>';
+    }
+  }
+
+  function resetear() {
+    notas = [];
+    document.getElementById('listaNotas').innerHTML = '';
+    document.getElementById('resultado').innerHTML = '';
+    document.getElementById('notaInput').value = '';
+    document.getElementById('notaInput').focus();
+  }
+</script>
+
+</body>
+</html>
