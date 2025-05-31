@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #000;
+  color: white;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+h2 {
+  color: #00ffff;
+  margin-bottom: 10px;
+}
+
+input, button {
+  padding: 8px;
+  margin: 5px 5px 10px 0;
+  border: none;
+  border-radius: 5px;
+}
+
+input {
+  width: 250px;
+}
+
+button {
+  background-color: #00ffff;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #00dddd;
+}
+
+hr {
+  border: 1px solid white;
+  margin: 40px 0;
+}
+
+.nota {
+  margin: 4px 0;
+}
+
+#resultado {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+#listaNotas {
+  margin-bottom: 15px;
+}
+
+/* Proyecto 3: Ajustes para el contenedor 3D y texto */
+.gato {
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  background: linear-gradient(145deg, #1e1e1e, #2c2c2c);
+  border-radius: 20px;
+  animation: animate 45s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  user-select: none;
+}
+
+.love {
+  font-size: 80px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  text-align: center;
+  margin-top: 20px;
+  color: #ff0066;
+  user-select: none;
+}
+
+@keyframes animate {
+  from {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(360deg);
+  }
+}
