@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Selectores en CSS</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 id="titulo">Selectores en CSS</h1>
+    </header>
+
+    <section class="contenido">
+      <h2>¿Qué son los selectores en CSS?</h2>
+      <p>Los selectores en CSS son patrones utilizados para seleccionar y aplicar estilos a los elementos HTML. Son una herramienta fundamental para diseñar y dar formato visual a las páginas web.</p>
+
+      <h2>¿Para qué sirven?</h2>
+      <p>Sirven para:</p>
+      <ul>
+        <li>Seleccionar elementos específicos del documento HTML.</li>
+        <li>Aplicar reglas de estilo (colores, tamaños, márgenes, etc.).</li>
+        <li>Crear estructuras visuales dinámicas y coherentes.</li>
+      </ul>
+
+      <h2>Tipos de selectores más comunes:</h2>
+      <ul class="lista-selectores">
+        <li>
+          <strong>Selector de tipo (o de etiqueta):</strong>
+          <br />
+          Aplica estilos a todas las etiquetas de un tipo específico.
+          <br /><code>p { color: blue; }</code>
+        </li>
+        <li>
+          <strong>Selector de clase:</strong>
+          <br />
+          Se aplica a los elementos que tengan una clase específica.
+          <br /><code>.destacado { font-weight: bold; }</code>
+        </li>
+        <li>
+          <strong>Selector de ID:</strong>
+          <br />
+          Se aplica a un elemento único con un identificador.
+          <br /><code>#titulo { font-size: 24px; }</code>
+        </li>
+        <li>
+          <strong>Selector descendiente:</strong>
+          <br />
+          Aplica estilos a un elemento dentro de otro.
+          <br /><code>div p { color: green; }</code>
+        </li>
+        <li>
+          <strong>Selector de hijo directo:</strong>
+          <br />
+          Aplica estilos solo a los elementos hijos directos.
+          <br /><code>ul > li { list-style: square; }</code>
+        </li>
+        <li>
+          <strong>Selector universal (*):</strong>
+          <br />
+          Selecciona todos los elementos del documento.
+          <br /><code>* { margin: 0; padding: 0; }</code>
+        </li>
+        <li>
+          <strong>Selectores de atributo:</strong>
+          <br />
+          Seleccionan elementos por el valor de un atributo.
+          <br /><code>input[type="text"] { border: 1px solid #000; }</code>
+        </li>
+        <li>
+          <strong>Selectores de grupo:</strong>
+          <br />
+          Permite aplicar el mismo estilo a varios elementos.
+          <br /><code>h1, h2, p { font-family: Arial; }</code>
+        </li>
+      </ul>
+    </section>
+
+    <section class="ejercicios">
+      <h2>Ejercicios de Selectores en CSS</h2>
+
+      <!-- Selector de tipo -->
+      <h3>Selector de tipo</h3>
+      <p>Este es un párrafo normal. Todos los <code>&lt;p&gt;</code> se verán igual con el selector de tipo.</p>
+
+      <!-- Selector de clase -->
+      <h3>Selector de clase</h3>
+      <div class="cuadro">Este div usa la clase <code>.cuadro</code></div>
+
+      <!-- Selector de ID -->
+      <h3>Selector de ID</h3>
+      <p id="especial">Este párrafo tiene un ID único llamado <code>#especial</code>. Haz clic para ver una alerta.</p>
+
+      <!-- Selector descendiente -->
+      <h3>Selector descendiente</h3>
+      <div class="contenedor">
+        <p>Este párrafo está dentro de un div con clase <code>.contenedor</code> y será afectado.</p>
+      </div>
+
+      <!-- Selector de hijo directo -->
+      <h3>Selector de hijo directo</h3>
+      <p>En esta lista, los <code>&lt;li&gt;</code> que son hijos directos de <code>&lt;ul&gt;</code> tienen estilo especial. El subelemento dentro de <code>&lt;ol&gt;</code> NO es hijo directo y por tanto tiene otro estilo.</p>
+      <ul class="lista">
+        <li>Elemento hijo directo 1</li>
+        <li>Elemento hijo directo 2</li>
+        <ol>
+          <li>Subelemento (no hijo directo)</li>
+        </ol>
+      </ul>
+    </section>
+  </div>
+
+  <!-- Script obligatorio -->
+  <script src="script.js"></script>
+</body>
+</html>
