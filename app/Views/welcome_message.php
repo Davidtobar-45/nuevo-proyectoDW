@@ -1,72 +1,51 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Suma de Ingresos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio en clase </title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 40px;
-        }
-        .container {
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            background: #f9f9f9;
-        }
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #007BFF;
-            color: white;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .resultado {
-            margin-top: 15px;
-            font-weight: bold;
-            font-size: 18px;
+            background-color: grey;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
-    <link rel="stylesheet" href="<?= base_url('public/css/bootstrap.main.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('public/css/bootstrap.min.css') ?>">
+    <script src="<?= base_url('public/js/bootstrap.budle.min.js') ?>"> </script>
 </head>
 <body>
+    
+    <div>
+        <h1>SUMA DE NUMEROS</h1>
 
-<div class="container">
-    <h2>Suma de Ingresos</h2>
-    <form method="post">
-        <input type="number" name="ingreso1" placeholder="Ingreso 1" step="any" required>
-        <input type="number" name="ingreso2" placeholder="Ingreso 2" step="any" required>
-        <input type="number" name="ingreso3" placeholder="Ingreso 3" step="any" required>
-        <button type="submit" name="calcular">Calcular</button>
-    </form>
+        <label>Numero 1 :</label>
+        <input type="number" id="num1" placeholder="numero1"><br><br>
 
-    <?php
-    if (isset($_POST['calcular'])) {
-        $ing1 = floatval($_POST['ingreso1']);
-        $ing2 = floatval($_POST['ingreso2']);
-        $ing3 = floatval($_POST['ingreso3']);
-        $total = $ing1 + $ing2 + $ing3;
-        echo "<div class='resultado'>Total de ingresos: <strong>\$" . number_format($total, 2) . "</strong></div>";
-    }
-    ?>
-</div>
+        <label>Numero 2 :</label>
+        <input type="number" id="num2" placeholder="numero2"><br><br>
 
-<script src="<?= base_url('public/js/bootstrap.bundle.min.js') ?>"></script>
+        <label>Numero 3 :</label>
+        <input type="number" id="num3" placeholder="numero3"><br><br>
 
+        <button onclick="sumarNumeros()">Sumar</button>
+        
+        
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+      function sumarNumeros() {
+        let n1 = parseFloat(document.getElementById("num1").value) || 0;
+        let n2 = parseFloat(document.getElementById("num2").value) || 0;
+        let n3 = parseFloat(document.getElementById("num3").value) ||0;
+
+        let suma = n1 + n2 + n3;
+
+        document.getElementById("resultado").innerText = "La suma es: " + suma;
+      }
+    </script>
 </body>
 </html>
