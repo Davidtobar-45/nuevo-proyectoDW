@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Número Ganador</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #mensaje {
+      padding: 10px;
+      font-size: 16px;
+      width: 220px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Encuentra el número ganador</h2>
+  
+  <!-- Contenedor para los botones en forma de cuadrícula -->
+  <div class="grid" id="botonera"></div>
+
+  <!-- Mensaje que muestra el resultado del intento -->
+  <input type="text" id="mensaje" readonly placeholder="Presiona un botón...">
+
+  <script>
+    // Referencias a los elementos del DOM
+    const contenedor = document.getElementById("botonera");
+    const mensaje = document.getElementById("mensaje");
+
+    // Generar número aleatorio entre 1 y 9
+    const numeroGanador = Math.floor(Math.random() * 9) + 1;
+
+    // Crear botones del 1 al 9
+    for (let i = 1; i <= 9; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+
+      // Agregar evento de clic a cada botón
+      btn.addEventListener("click", () => {
+        if (i === numeroGanador) {
+          mensaje.value = "¡Número ganador!";
+        } else {
+          mensaje.value = "Número incorrecto";
+          btn.disabled = true; // Deshabilita botón incorrecto
+        }
+      });
+
+      contenedor.appendChild(btn);
+    }
+  </script>
+</body>
+</html>

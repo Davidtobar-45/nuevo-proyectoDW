@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Manejo de Eventos</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: sans-serif;
+      margin-top: 50px;
+    }
+    button {
+      margin: 10px;
+      padding: 15px;
+      font-size: 16px;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Eventos con addEventListener</h2>
+
+  <!-- Botones para distintos eventos -->
+  <button id="hoverBtn">Pasa el mouse</button>
+  <button id="clickBtn">Haz clic</button>
+  <button id="dblClickBtn">Doble clic</button>
+
+  <!-- Resultado del evento -->
+  <p id="resultado">Interacción pendiente...</p>
+
+  <script>
+    // Referencias a los elementos
+    const hoverBtn = document.getElementById("hoverBtn");
+    const clickBtn = document.getElementById("clickBtn");
+    const dblClickBtn = document.getElementById("dblClickBtn");
+    const resultado = document.getElementById("resultado");
+
+    // Evento: pasar el mouse por encima del botón
+    hoverBtn.addEventListener("mouseover", () => {
+      resultado.textContent = "Pasaste el mouse por encima.";
+    });
+
+    // Evento: clic al botón
+    clickBtn.addEventListener("click", () => {
+      resultado.textContent = "Hiciste clic.";
+    });
+
+    // Evento: doble clic al botón
+    dblClickBtn.addEventListener("dblclick", () => {
+      resultado.textContent = "Hiciste doble clic.";
+    });
+  </script>
+</body>
+</html>
