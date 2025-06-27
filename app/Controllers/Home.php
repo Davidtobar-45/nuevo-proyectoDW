@@ -22,4 +22,11 @@ class Home extends BaseController
     {
         return view('/VistaFormulario2/Formulario2.php');
     }
+// nuevo  
+        public function index2(): string
+    {
+    echo view('catalogo/body.php');
+    echo view('catalogo/footer.php');
+    echo view('catalogo/header.php');
+}
 }
