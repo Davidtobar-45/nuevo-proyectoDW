@@ -6,7 +6,8 @@ class CEjemplo extends BaseController
 {
    public function index(): string
     {
-        return view('/VistaFormulario/cuerpo.php');
+        echo view('/Contenido/Encabesado.php');
+        echo view('/VistaFormulario/Cuerpo.php');
     }
 
 }
