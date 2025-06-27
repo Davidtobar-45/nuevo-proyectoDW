@@ -6,9 +6,8 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-//http://localhost/nuevo-proyectoDW/vista1
-$routes->get('/Vista1', 'Home::MetodoMostrarFormulario2');
-//http://localhost/nuevo-proyectoDW/vista1
-$routes->get('/Vista', 'Home::MostrarFormulario2');
-
-$routes->get('/vista2', 'Suma::cuerpo.php');
+$routes->get('/vista1', 'Home::index1');
+$routes->get('/vista2', 'Home::index2');
+$routes->get('/vista3', 'Home::index3');
+$routes->get('/Suma', 'Suma::index');
+$routes->get('/Suma', 'Suma::index');

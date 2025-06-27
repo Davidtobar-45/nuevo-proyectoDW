@@ -10,4 +10,10 @@ class CEjemplo extends BaseController
         echo view('/VistaFormulario/Cuerpo.php');
     }
 
+    public function index(): string
+    {
+        echo view('/Contenido/Encabesado.php');
+        echo view('/VistaFormulario/Cuerpo.php');
+    }
+
 }

@@ -8,7 +8,7 @@
     <script src="<?= base_url('public/js/bootstrap.min.js') ?>"></script>
 </head>
 <body>
-
+<form action="<? base_url('/Suma/procesar')?>"method ="post">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
