@@ -15,4 +15,11 @@ class Home extends BaseController
     {
         return view('/VistaFormularios/Formulario1.php');
     }
+
+// nuevo  formulario 2
+
+    public function MostrarFormulario2(): string
+    {
+        return view('/VistaFormulario2/Formulario2.php');
+    }
 }

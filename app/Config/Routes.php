@@ -8,3 +8,5 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 //http://localhost/nuevo-proyectoDW/vista1
 $routes->get('/Vista1', 'Home::MetodoMostrarFormulario2');
+//http://localhost/nuevo-proyectoDW/vista1
+$routes->get('/Vista2', 'Home::MostrarFormulario2');
