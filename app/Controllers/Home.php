@@ -6,27 +6,23 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        return view('/VistaLogin/index.php');
+        return view('welcome_message');
     }
 
-// nuevo metodo de formulario 
-
-    public function MetodoMostrarFormulario2(): string
+     public function index1(): string
     {
-        return view('/VistaFormularios/Formulario1.php');
+        return view('VistaLogin/Formulario1');
     }
 
-// nuevo  formulario 2
-
-    public function MostrarFormulario2(): string
+    public function index2(): string
     {
-        return view('/VistaFormulario2/Formulario2.php');
+        return view('VistaFormulario/Formulario2');
     }
-// nuevo  
-        public function index2(): string
+
+    public function index3()
     {
-    echo view('catalogo/body.php');
-    echo view('catalogo/footer.php');
-    echo view('catalogo/header.php');
-}
+        echo view('catalogo/header');
+        echo view('catalogo/body');
+        echo view('catalogo/footer');
+    }
 }

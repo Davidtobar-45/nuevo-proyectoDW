@@ -2,18 +2,24 @@
 
 namespace App\Controllers;
 
-class CEjemplo extends BaseController
+use App\Controllers\BaseController;
+use CodeIgniter\HTTP\ResponseInterface;
+
+class Suma extends BaseController
 {
-   public function index(): string
+    public function index()
     {
-        echo view('/Contenido/Encabesado.php');
-        echo view('/VistaFormulario/Cuerpo.php');
+        $data = [
+            "titulo"=> "Vista SUMA",
+        ];
+        echo view("Contenido/Encabezado", $data);
+        echo view("VistaFormulario/Cuerpo");
     }
 
-    public function index(): string
-    {
-    $numero1= $this ->request ->getPost('numero 1');
-    $numero1= $this ->request ->getPost('numero 2');
-    }
+    public function psumar(){
+       $Vnumero1 = $this->request->getPost('numero1'); 
+       $Vnumero2 = $this->request->getPost('numero2'); 
 
+
+    }
 }

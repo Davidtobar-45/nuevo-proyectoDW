@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    Header
+    Formulario2
 </body>
 </html>
