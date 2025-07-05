@@ -2,57 +2,52 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Multiplicación y Potencias</title>
-
-    <!-- Bootstrap CSS offline -->
-    <link rel="stylesheet" href="<?= base_url('bootstrap/css/bootstrap.min.css') ?>">
+    <title>Ejercicios con CodeIgniter</title>
+    <!-- Carga el archivo CSS de Bootstrap para estilos -->
+    <link rel="stylesheet" href="<?= base_url('public/assets/bootstrap/css/bootstrap.min.css') ?>">
+    <!-- Nota: aquí no debes cargar archivos JS como si fueran CSS -->
 </head>
-<body>
+<body class="bg-light py-5">
 
-<div class="container mt-5">
-    <div class="row">
-
-        <!-- Sección: Tabla de Multiplicar -->
-        <div class="col-md-6 border-end">
-            <h2 class="text-center mb-4">Tabla de Multiplicar</h2>
-
-            <div class="mb-3">
-                <label for="numMult" class="form-label">Ingrese un número:</label>
-                <input type="number" id="numMult" class="form-control" value="2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Sección para la tabla de multiplicar -->
+            <div class="col-md-5 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Tabla de Multiplicar</h5>
+                        <!-- Input para que el usuario escriba el número -->
+                        <input type="number" id="numeroMultiplicar" class="form-control my-2" placeholder="Ingrese un número">
+                        <!-- Botón para generar la tabla -->
+                        <button id="btnMultiplicar" class="btn btn-primary w-100 mb-2">Generar Tabla</button>
+                        <!-- Aquí se mostrará el resultado de la tabla -->
+                        <div id="resultadoMultiplicar" class="bg-light p-2 rounded" style="min-height: 50px;"></div>
+                    </div>
+                </div>
             </div>
 
-            <button id="btnMult" class="btn btn-primary w-100 mb-3">Generar Tabla</button>
-
-            <pre id="resultadoMult" class="bg-light p-3" style="min-height: 200px;"></pre>
+            <!-- Sección para calcular potencias -->
+            <div class="col-md-5 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Potencias</h5>
+                        <!-- Inputs para base y exponente -->
+                        <input type="number" id="base" class="form-control mb-2" placeholder="Base">
+                        <input type="number" id="exponente" class="form-control mb-2" placeholder="Exponente">
+                        <!-- Botón para calcular potencias -->
+                        <button id="btnPotencia" class="btn btn-primary w-100 mb-2">Calcular</button>
+                        <!-- Aquí se mostrarán los resultados -->
+                        <div id="resultadoPotencia" class="bg-light p-2 rounded" style="min-height: 50px;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Sección: Potencias -->
-        <div class="col-md-6">
-            <h2 class="text-center mb-4">Potencias</h2>
-
-            <div class="mb-2">
-                <label for="base" class="form-label">Base:</label>
-                <input type="number" id="base" class="form-control" value="2">
-            </div>
-
-            <div class="mb-2">
-                <label for="exponente" class="form-label">Exponente:</label>
-                <input type="number" id="exponente" class="form-control" value="3">
-            </div>
-
-            <button id="btnPot" class="btn btn-success w-100 mb-3">Calcular Potencias</button>
-
-            <pre id="resultadoPot" class="bg-light p-3" style="min-height: 200px;"></pre>
-        </div>
-
     </div>
-</div>
 
-<!-- Bootstrap JS offline -->
-<script src="<?= base_url('bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-
-<!-- Tu script personalizado -->
-<script src="<?= base_url('js/script.js') ?>"></script>
+    <!-- Carga el JavaScript de Bootstrap (popper + bootstrap) -->
+    <script src="<?= base_url('public/assets/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+    <!-- Carga el archivo JS con las funciones que hacen las peticiones AJAX -->
+    <script src="<?= base_url('public/assets/js/funciones.js') ?>"></script>
 
 </body>
 </html>
