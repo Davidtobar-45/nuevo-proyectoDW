@@ -12,7 +12,7 @@
     <!-- CSS desde login-form-20 -->
     <link rel="stylesheet" href="<?= base_url('public/css/style.css') ?>">
 </head>
-<body class="img js-fullheight" style="background-image: url('<?= base_url('public/login-form-20/images/bg12.jpg') ?>');">
+<body class="img js-fullheight">
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
@@ -63,5 +63,23 @@
     <script src="<?= base_url('public/login-form-20/js/popper.js') ?>"></script>
     <script src="<?= base_url('public/login-form-20/js/bootstrap.min.js') ?>"></script>
     <script src="<?= base_url('public/login-form-20/js/main.js') ?>"></script>
+
+    <!-- Script para cambiar fondo cada 3 segundos -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const body = document.body;
+        const images = [
+          '<?= base_url('public/login-form-20/images/bg11.jpg') ?>',
+          '<?= base_url('public/login-form-20/images/bg12.jpg') ?>',
+          '<?= base_url('public/login-form-20/images/bg20.jpg') ?>'
+        ];
+        let index = 0;
+
+        setInterval(() => {
+          index = (index + 1) % images.length;
+          body.style.backgroundImage = `url('${images[index]}')`;
+        }, 3000); // Cambia cada 3 segundos
+      });
+    </script>
 </body>
 </html>

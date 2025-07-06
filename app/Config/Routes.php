@@ -14,3 +14,5 @@ $routes->get('/', 'Login::dashboard'); // Muestra login
 $routes->post('login/auth', 'Login::auth'); // Procesa login
 $routes->get('welcome', 'Login::welcome'); // Vista después del login
 $routes->get('logout', 'Login::logout'); // Cierra sesión
+
+$routes->get('(:segment)/(:num)', 'Productos::mostrar/$1/$2', ['filter' => 'auth']);
