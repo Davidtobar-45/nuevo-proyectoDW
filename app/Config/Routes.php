@@ -20,3 +20,9 @@ $routes->get('(:segment)/(:num)', 'Productos::index/$1/$2');
 
 $routes->get('dashboard', 'Login::dashboard', ['filter' => 'auth']);
 $routes->get('(:segment)/(:num)', 'Productos::index/$1/$2', ['filter' => 'auth']);
+
+// CREAR RUTA PARA TESTEAR LA CONEXION DE LA BASE DE DATOS
+$routes->get('/test', 'Home::MetodoTestear');
+
+//CREAR RUTA PARA VER SELECT
+$routes->get('/Select ',h)
