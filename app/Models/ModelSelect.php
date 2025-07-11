@@ -6,9 +6,9 @@ use CodeIgniter\Model;
 
 class ModelSelect extends Model
 {
-    public function ‘FuncionSelecUsuario’()
+    public function FuncionSelectUsuario()
     {
-        $query = $this->db->query("SP_SELECT_USUARIO");
+        $query = $this->db->query("CALL SP_SELECT_USUARIO()");
         return $query->getResultArray();
     }
 }

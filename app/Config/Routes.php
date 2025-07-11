@@ -5,24 +5,14 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Login::index');
-$routes->get('/', 'Login::dashboard', ['filter' => 'auth']);
-
-
-$routes->post('login/auth', 'Login::auth');
-$routes->get('logout', 'Login::logout');
-
-// Ruta para dashboard (vista bienvenida)
-$routes->get('dashboard', 'Login::dashboard', ['filter' => 'auth']);
-
-// Ruta dinámica para productos con dos variables
-$routes->get('(:segment)/(:num)', 'Productos::index/$1/$2');
-
-$routes->get('dashboard', 'Login::dashboard', ['filter' => 'auth']);
-$routes->get('(:segment)/(:num)', 'Productos::index/$1/$2', ['filter' => 'auth']);
-
-// CREAR RUTA PARA TESTEAR LA CONEXION DE LA BASE DE DATOS
+$routes->get('/', 'Home::index');
+$routes->get('/vista1', 'Home::index1');
+$routes->get('/vista2', 'Home::index2');
+$routes->get('/vista3', 'Home::index3');
+$routes->get('/Suma', 'Suma::index');
+$routes->post('/Suma/procesar','Suma::psumar');
+$routes->get('/VistasCss/(:num)', 'ControladorCss::index/$1');
+// Voy a crear una ruta para testear la conexion de bdd
 $routes->get('/test', 'Home::MetodoTestear');
-
-//CREAR RUTA PARA VER SELECT
-$routes->get('/Select ',h)
+// Crear una ruta para ver el select
+$routes->get('/Select', 'Home::ControladorSelectUsuarioFuncion');
