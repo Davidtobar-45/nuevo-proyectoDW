@@ -13,6 +13,13 @@
 </head>
 
 <body>
+    <?php
+    if (session()->getFlashdata('mensaje')) { ?>
+        <script>
+            alert(<?= json_encode(session()->getFlashdata('mensaje')) ?>)
+        </script>
+    <?php } ?>
+
     <table class="table table-bordered" style="width: 50%;">
         <tr>
             <td>ID</td>
@@ -21,15 +28,20 @@
             <td>CONTRASEÑA</td>
             <td>CEDULA</td>
             <td>ESTADO</td>
+            <td>ACCIONES</td>
         </tr>
         <?php foreach ($DatosVista as $key): ?>
             <tr>
-                <td> <?= $key['usu_id'] ?> </td>
-                <td> <?= $key['usu_nombre'] ?> </td>
-                <td> <?= $key['usu_correo'] ?> </td>
-                <td> <?= $key['usu_pass'] ?> </td>
-                <td> <?= $key['usu_cedula'] ?> </td>
-                <td> <?= $key['usu_estado'] ?> </td>
+                <td><?= $key['usu_id'] ?></td>
+                <td><?= $key['usu_nombre'] ?></td>
+                <td><?= $key['usu_correo'] ?></td>
+                <td><?= $key['usu_pass'] ?></td>
+                <td><?= $key['usu_cedula'] ?></td>
+                <td><?= $key['usu_estado'] ?></td>
+                <td>
+                    <a href="<?= base_url() . 'editar/' . $key['usu_id'] ?>">EDITAR</a> |
+                    <a href="<?= base_url() . 'eliminar/' . $key['usu_id'] ?>">ELIMINAR</a>
+                </td>
             </tr>
         <?php endforeach; ?>
     </table>
