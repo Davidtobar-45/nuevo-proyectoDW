@@ -16,3 +16,4 @@ $routes->get('/VistasCss/(:num)', 'ControladorCss::index/$1');
 $routes->get('/test', 'Home::MetodoTestear');
 // Crear una ruta para ver el select
 $routes->get('/Select', 'Home::ControladorSelectUsuarioFuncion');
+$routes->get('/Insert', 'Home::IndexInsert');

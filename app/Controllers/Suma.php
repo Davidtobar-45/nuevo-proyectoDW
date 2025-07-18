@@ -31,4 +31,9 @@ class Suma extends BaseController
 
         echo view('VistaFormulario/suma_resultado', $data);
     }
+
+public function indexInsert(): string
+{
+    return view(name:'ViewInsert');
+}
 }
