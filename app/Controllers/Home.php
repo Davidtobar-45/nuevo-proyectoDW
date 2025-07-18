@@ -75,4 +75,16 @@ class Home extends BaseController
         }
         return redirect()->to (base_url('/Select'));
     }
+
+    public function EliminarUsuario()
+    {
+        $instancia = new ModelInsert();
+        if($instancia->functionEliminarUsuario($data)){
+             session() ->setFlashdata('mensaje',':) Eliminacion Correcta');
+
+        }else{
+             session() ->setFlashdata('mensaje',':) Eliminacion Fallida');
+        }
+        return redirect()->to (base_url('/Select'));
+    }
 }

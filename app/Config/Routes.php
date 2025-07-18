@@ -20,3 +20,5 @@ $routes->get('/Select', 'Home::ControladorSelectUsuarioFuncion');
 
 $routes->get('/Insert', 'Home::IndexInsert');
 $routes->post('/Crear', 'Home::InsertUsuario');
+
+$routes->post('/Eliminar/(:any)', 'Home::EliminarUsuario/$1');
