@@ -1,54 +1,39 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\ModelSelect;
+
+use App\Models\UsuarioModel;
 
 class Home extends BaseController
 {
-    public function ControladorSelectUsuarioFuncion()
+    public function index()
     {
-        // Instancia crear
-        $objetoInstancia = new ModelSelect();
-        // Del objeto saco la funcion que rescata datos del SP
-        $datos = $objetoInstancia->FuncionSelectUsuario();
-        // Almaceno esos datos en vector llave-valor para enviarlos a la vista
-        $datosenviadosavista = [
-            "DatosVista"=> $datos,
-        ];
-        // Retorno vista con los datos
-        return view("ViewSelect", $datosenviadosavista);
+        // Mostrar vista de login
+        return view('login');
     }
 
-
-    public function MetodoTestear()
+    public function login()
     {
-        $db = \Config\Database::connect();
-        if ($db->connect()) {
-            echo 'Conexion Correcta';
+        $usuarioModel = new UsuarioModel();
+        $usuario = $this->request->getPost('usuario');
+        $clave = $this->request->getPost('clave');
+
+        $datos = $usuarioModel->where('usuario', $usuario)->first();
+
+        if ($datos && hash('sha256', $clave) === $datos['clave']) {
+            session()->set('usuario', $usuario);
+            return redirect()->to('/dashboard');
         } else {
-            echo 'Conexion Faliida';
+            return redirect()->back()->with('error', 'Usuario o clave incorrectos');
         }
     }
 
-    public function index(): string
+    public function dashboard()
     {
-        return view('welcome_message');
-    }
+        if (!session()->get('usuario')) {
+            return redirect()->to('/');
+        }
 
-    public function index1(): string
-    {
-        return view('VistaLogin/Formulario1');
-    }
-
-    public function index2(): string
-    {
-        return view('VistaFormulario/Formulario2');
-    }
-
-    public function index3()
-    {
-        echo view('catalogo/header');
-        echo view('catalogo/body');
-        echo view('catalogo/footer');
+        return view('dashboard');
     }
 }
