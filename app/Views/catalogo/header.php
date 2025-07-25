@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    Header
+    <h1>Header</h1>
 </body>
 </html>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulario 1</title>
 </head>
 <body>
-    Formulario1
+    <h1>Formulario 1</h1>
 </body>
 </html>
