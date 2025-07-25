@@ -6,22 +6,19 @@ use CodeIgniter\Model;
 
 class ModelInsert extends Model
 {
-    public function funcionSelectUsuarios($data)
+
+    public function FuncionInsertUsuario($data)
     {
-        try { 
-            $contraencriptada= password_hash $data["usu_pass"], PASSWORD_DEFAULT
+        try {
             return $this->db->query(
-                "CALL SP_INSERT_USUARIO(?, ?, ?, ?, ?)",
-                [
-                    $data["usu_nombre"],
-                    $data["usu_correo"],
-                    $passencrip, $data["usu_cedula"],
-                    $data["usu_estado"]
-                ]
+                "CALL SP_INSERT_USUARIO(?,?,?,?,?)",
+                [$data["usu_nombre"], $data["usu_correo"], 
+                $data["usu_pass"], $data["usu_cedula"],$data["usu_estado"]]
             );
         } catch (\Throwable $th) {
-            log_message('error', $th->getMessage());
             throw $th;
         }
     }
+
 }
+

@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class ModelDelete extends Model
 {
-    public functioneliminarUsuario($id)
+    public function FuncionEliminarUsuario($id)
     {
         try {
             return $this->db->query(
@@ -14,8 +14,9 @@ class ModelDelete extends Model
                 [$id]
             );
         } catch (\Throwable $th) {
-            log_message('error', $th->getMessage());
             throw $th;
         }
     }
+
 }
+

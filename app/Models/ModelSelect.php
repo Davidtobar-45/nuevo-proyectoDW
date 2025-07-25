@@ -11,6 +11,11 @@ class ModelSelect extends Model
         $query = $this->db->query("CALL SP_SELECT_USUARIO()");
         return $query->getResultArray();
     }
+
+    public function FuncionSelectPoductos()
+    {
+        $query = $this->db->query("CALL SP_SELECT_PRODUCTOS()");
+        return $query->getResultArray();
+    }
 }
 
-// Hay que agregar al controlador el // use App\Models\Nombre de la clase modelo;
