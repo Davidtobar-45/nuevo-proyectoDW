@@ -8,27 +8,13 @@ use App\Models\ModelInsert;
 
 class Home extends BaseController
 {
-    // Muestra el login (vista principal)
+    // Vista principal del sistema (puedes cambiar si quieres)
     public function index(): string
     {
         return view('welcome_message');
     }
 
-    // Autenticación simple sin base de datos
-    public function autenticar()
-    {
-        $usuario = $this->request->getPost('usuario');
-        $clave = $this->request->getPost('clave');
-
-        // Usuario y clave fijos para pruebas (puedes cambiarlos)
-        if ($usuario === 'admin' && $clave === '1234') {
-            return redirect()->to(base_url('ViewSelect'));
-        } else {
-            return redirect()->to(base_url('/'))->with('error', 'Credenciales incorrectas');
-        }
-    }
-
-    // Vista para tabla combinada
+    // Mostrar datos combinados de usuarios y productos
     public function ViewSelect()
     {
         $model = new ModelSelect();
@@ -43,6 +29,7 @@ class Home extends BaseController
         return view('ViewSelect', $data);
     }
 
+    // Método para probar conexión a la base de datos
     public function MetodoTestear()
     {
         $db = \Config\Database::connect();
@@ -70,11 +57,13 @@ class Home extends BaseController
         echo view('catalogo/footer');
     }
 
+    // Mostrar formulario para insertar usuario
     public function indexInsert()
     {
         return view('ViewInsert');
     }
 
+    // Insertar usuario nuevo con password hasheado
     public function insertUsuario()
     {
         $modelInsert = new ModelInsert();
@@ -88,22 +77,23 @@ class Home extends BaseController
         ];
 
         if ($modelInsert->FuncionInsertUsuario($data)) {
-            session()->setFlashdata('mensaje', ':) Inserción correcta 👍');
+            session()->setFlashdata('mensaje', 'Usuario registrado correctamente.');
         } else {
-            session()->setFlashdata('mensaje', ':"( Inserción fallida 👎');
+            session()->setFlashdata('mensaje', 'Error al registrar usuario.');
         }
 
-        return redirect()->to(base_url('/Select'));
+        return redirect()->to(base_url('/Insert'));
     }
 
+    // Eliminar usuario por ID
     public function eliminarUsuario($id)
     {
         $modelDelete = new ModelDelete();
 
         if ($modelDelete->FuncionEliminarUsuario($id)) {
-            session()->setFlashdata('mensaje', ':) Eliminación correcta 👍');
+            session()->setFlashdata('mensaje', 'Usuario eliminado correctamente.');
         } else {
-            session()->setFlashdata('mensaje', ':"( Eliminación fallida 👎');
+            session()->setFlashdata('mensaje', 'Error al eliminar usuario.');
         }
 
         return redirect()->to(base_url('/Select'));

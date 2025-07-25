@@ -6,19 +6,12 @@ use CodeIgniter\Model;
 
 class ModelInsert extends Model
 {
+    protected $table = 'tbl_usuarios';
+    protected $primaryKey = 'usu_id';
+    protected $allowedFields = ['usu_nombre', 'usu_correo', 'usu_pass', 'usu_cedula', 'usu_estado'];
 
     public function FuncionInsertUsuario($data)
     {
-        try {
-            return $this->db->query(
-                "CALL SP_INSERT_USUARIO(?,?,?,?,?)",
-                [$data["usu_nombre"], $data["usu_correo"], 
-                $data["usu_pass"], $data["usu_cedula"],$data["usu_estado"]]
-            );
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        return $this->insert($data);
     }
-
 }
-

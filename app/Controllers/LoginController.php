@@ -15,7 +15,7 @@ class LoginController extends BaseController
 
         // Usuario y contraseña fijos para prueba
         $usuario_valido = 'admin@correo.com';
-        $clave_valida = '123456';
+        $clave_valida = '123';
 
         if ($correo === $usuario_valido && $clave === $clave_valida) {
             session()->set('usuario', ['correo' => $correo]);
