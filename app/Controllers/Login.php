@@ -1,28 +1,46 @@
 <?php
-
 namespace App\Controllers;
 use CodeIgniter\Controller;
+use App\Models\UsuarioModel;
 
 class Login extends Controller
 {
     public function index()
     {
-        return view('login'); // muestra el formulario
+        return view('login');
     }
 
-    public function login()
+    public function auth()
     {
-        $correo = $this->request->getPost('correo');
+        $session = session();
+        $model = new UsuarioModel();
+
+        $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        // Aquí deberías validar el usuario con la base de datos
+        $user = $model->where('nombre_usuario', $username)->first();
 
-        if ($correo === 'admin@demo.com' && $password === '123456') {
-            // Usuario válido: redirige a dashboard
-            return redirect()->to(base_url('dashboard'));
+        if ($user) {
+            if (password_verify($password, $user['contraseña'])) {
+                $session->set([
+                    'usuario_id' => $user['id'],
+                    'nombre_usuario' => $user['nombre_usuario'],
+                    'logged_in' => true
+                ]);
+                return redirect()->to('/principal');
+            } else {
+                $session->setFlashdata('msg', 'Contraseña incorrecta');
+                return redirect()->to('/login');
+            }
         } else {
-            // Usuario no válido: redirige al login con error
-            return redirect()->back()->with('error', 'Credenciales inválidas');
+            $session->setFlashdata('msg', 'Usuario no encontrado');
+            return redirect()->to('/login');
         }
+    }
+
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/login');
     }
 }
