@@ -42,7 +42,6 @@ use PhpCsFixer\Runner\Parallel\ProcessIdentifier;
 use PhpCsFixer\Runner\Parallel\ProcessPool;
 use PhpCsFixer\Runner\Parallel\WorkerException;
 use PhpCsFixer\Tokenizer\Tokens;
-use PhpCsFixer\Utils;
 use React\EventLoop\StreamSelectLoop;
 use React\Socket\ConnectionInterface;
 use React\Socket\TcpServer;
@@ -424,20 +423,6 @@ final class Runner
         $old = FileReader::createSingleton()->read($file->getRealPath());
 
         $tokens = Tokens::fromCode($old);
-
-        if (
-            Utils::isFutureModeEnabled() // @TODO 4.0 drop this line
-            && !filter_var(getenv('PHP_CS_FIXER_NON_MONOLITHIC'), \FILTER_VALIDATE_BOOL)
-            && !$tokens->isMonolithicPhp()
-        ) {
-            $this->dispatchEvent(
-                FileProcessed::NAME,
-                new FileProcessed(FileProcessed::STATUS_NON_MONOLITHIC)
-            );
-
-            return null;
-        }
-
         $oldHash = $tokens->getCodeHash();
 
         $new = $old;
@@ -550,7 +535,7 @@ final class Runner
 
         $this->dispatchEvent(
             FileProcessed::NAME,
-            new FileProcessed(null !== $fixInfo ? FileProcessed::STATUS_FIXED : FileProcessed::STATUS_NO_CHANGES, $newHash)
+            new FileProcessed(null !== $fixInfo ? FileProcessed::STATUS_FIXED : FileProcessed::STATUS_NO_CHANGES, $filePathname, $newHash)
         );
 
         return $fixInfo;

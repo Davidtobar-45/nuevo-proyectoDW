@@ -56,14 +56,14 @@ final class TypeExpression
             (?:
                 (?<array_shape>
                     (?<array_shape_name>(?i)(?:array|list|object)(?-i))
-                    (?<array_shape_start>\h*\{[\h\v*]*)
+                    (?<array_shape_start>\h*\{\h*)
                     (?<array_shape_inners>
                         (?<array_shape_inner>
                             (?<array_shape_inner_key>(?:(?&constant)|(?&identifier)|(?&name))\h*\??\h*:\h*|)
                             (?<array_shape_inner_value>(?&types_inner))
                         )
                         (?:
-                            \h*,[\h\v*]*
+                            \h*,\h*
                             (?&array_shape_inner)
                         )*+
                         (?:\h*,|(?!(?&array_shape_unsealed_variadic)))
@@ -80,7 +80,7 @@ final class TypeExpression
                             \h*>
                         |)
                     |)
-                    [\h\v*]*\}
+                    \h*\}
                 )
                 |
                 (?<callable> # callable syntax, e.g. `callable(string, int...): bool`, `\Closure<T>(T, int): T`
@@ -133,16 +133,16 @@ final class TypeExpression
                 |
                 (?<generic> # generic syntax, e.g.: `array<int, \Foo\Bar>`
                     (?<generic_name>(?&name))
-                    (?<generic_start>\h*<[\h\v*]*)
+                    (?<generic_start>\h*<\h*)
                     (?<generic_types>
                         (?&types_inner)
                         (?:
-                            \h*,[\h\v*]*
+                            \h*,\h*
                             (?&types_inner)
                         )*+
                         (?:\h*,)?
                     )
-                    [\h\v*]*>
+                    \h*>
                 )
                 |
                 (?<class_constant> # class constants with optional wildcard, e.g.: `Foo::*`, `Foo::CONST_A`, `FOO::CONST_*`
@@ -637,7 +637,7 @@ final class TypeExpression
         $index = 0;
         while (\strlen($value) !== $index) {
             Preg::match(
-                '{\G'.self::REGEX_TYPES.'(?:\h*,[\h\v*]*|$)}',
+                '{\G'.self::REGEX_TYPES.'(?:\h*,\h*|$)}',
                 $value,
                 $matches,
                 0,
@@ -733,7 +733,7 @@ final class TypeExpression
         $index = 0;
         while (\strlen($value) !== $index) {
             Preg::match(
-                '{\G(?:(?=1)0'.self::REGEX_TYPES.'|(?<_array_shape_inner>(?&array_shape_inner))(?:\h*,[\h\v*]*|$))}',
+                '{\G(?:(?=1)0'.self::REGEX_TYPES.'|(?<_array_shape_inner>(?&array_shape_inner))(?:\h*,\h*|$))}',
                 $value,
                 $prematches,
                 0,

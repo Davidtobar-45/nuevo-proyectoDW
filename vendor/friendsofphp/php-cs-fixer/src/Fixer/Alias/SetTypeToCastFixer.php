@@ -155,7 +155,7 @@ settype($bar, "null");
     }
 
     /**
-     * @return list<array{int, int, int}>
+     * @return list<list<int>>
      */
     private function findSettypeCalls(Tokens $tokens): array
     {

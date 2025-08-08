@@ -63,9 +63,6 @@ final class PhpdocLineSpanFixer extends AbstractFixer implements WhitespacesAwar
         \T_STATIC,
         \T_STRING,
         \T_NS_SEPARATOR,
-        CT::T_CONSTRUCTOR_PROPERTY_PROMOTION_PUBLIC,
-        CT::T_CONSTRUCTOR_PROPERTY_PROMOTION_PROTECTED,
-        CT::T_CONSTRUCTOR_PROPERTY_PROMOTION_PRIVATE,
         CT::T_ARRAY_TYPEHINT,
         CT::T_NULLABLE_TYPE,
         FCT::T_ATTRIBUTE,
@@ -128,14 +125,13 @@ final class PhpdocLineSpanFixer extends AbstractFixer implements WhitespacesAwar
         $analyzer = new TokensAnalyzer($tokens);
 
         foreach ($analyzer->getClassyElements() as $index => $element) {
-            $type = $element['type'];
-            $type = 'promoted_property' === $type ? 'property' : $type;
-
-            if (!isset($this->configuration[$type])) {
+            if (!$this->hasDocBlock($tokens, $index)) {
                 continue;
             }
 
-            if (!$this->hasDocBlock($tokens, $index)) {
+            $type = $element['type'];
+
+            if (!isset($this->configuration[$type])) {
                 continue;
             }
 

@@ -43,13 +43,17 @@ final class AttributeTransformer extends AbstractTransformer
             return;
         }
 
+        $level = 1;
+
         do {
             ++$index;
 
-            if ($tokens[$index]->equals('(')) {
-                $index = $tokens->findBlockEnd(Tokens::BLOCK_TYPE_PARENTHESIS_BRACE, $index) + 1;
+            if ($tokens[$index]->equals('[')) {
+                ++$level;
+            } elseif ($tokens[$index]->equals(']')) {
+                --$level;
             }
-        } while (!$tokens[$index]->equals(']'));
+        } while (0 < $level);
 
         $tokens[$index] = new Token([CT::T_ATTRIBUTE_CLOSE, ']']);
     }

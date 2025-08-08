@@ -23,6 +23,7 @@ use PhpCsFixer\FixerConfiguration\FixerOptionBuilder;
 use PhpCsFixer\FixerDefinition\CodeSample;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
+use PhpCsFixer\Tokenizer\Analyzer\Analysis\NamespaceAnalysis;
 use PhpCsFixer\Tokenizer\Analyzer\NamespaceUsesAnalyzer;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
@@ -148,6 +149,7 @@ namespace {
             }
         }
 
+        /** @var list<string> */
         $constantsToEscape = array_diff(
             array_unique($constantsToEscape),
             $uniqueConfiguredExclude
@@ -191,6 +193,7 @@ namespace {
         $namespaces = $tokens->getNamespaceDeclarations();
 
         // 'scope' is 'namespaced' here
+        /** @var NamespaceAnalysis $namespace */
         foreach (array_reverse($namespaces) as $namespace) {
             if ($namespace->isGlobalNamespace()) {
                 continue;
