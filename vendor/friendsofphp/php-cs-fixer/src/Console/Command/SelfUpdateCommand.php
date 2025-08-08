@@ -34,14 +34,10 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @internal
  */
-#[AsCommand(name: 'self-update', description: 'Update php-cs-fixer.phar to the latest stable version.')]
+#[AsCommand(name: 'self-update')]
 final class SelfUpdateCommand extends Command
 {
-    /** @TODO PHP 8.0 - remove the property */
     protected static $defaultName = 'self-update';
-
-    /** @TODO PHP 8.0 - remove the property */
-    protected static $defaultDescription = 'Update php-cs-fixer.phar to the latest stable version.';
 
     private NewVersionCheckerInterface $versionChecker;
 
@@ -61,23 +57,6 @@ final class SelfUpdateCommand extends Command
         $this->pharChecker = $pharChecker;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * Override here to only generate the help copy when used.
-     */
-    public function getHelp(): string
-    {
-        return <<<'EOT'
-            The <info>%command.name%</info> command replace your php-cs-fixer.phar by the
-            latest version released on:
-            <comment>https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases</comment>
-
-            <info>$ php php-cs-fixer.phar %command.name%</info>
-
-            EOT;
-    }
-
     protected function configure(): void
     {
         $this
@@ -86,6 +65,17 @@ final class SelfUpdateCommand extends Command
                 [
                     new InputOption('--force', '-f', InputOption::VALUE_NONE, 'Force update to next major version if available.'),
                 ]
+            )
+            ->setDescription('Update php-cs-fixer.phar to the latest stable version.')
+            ->setHelp(
+                <<<'EOT'
+                    The <info>%command.name%</info> command replace your php-cs-fixer.phar by the
+                    latest version released on:
+                    <comment>https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases</comment>
+
+                    <info>$ php php-cs-fixer.phar %command.name%</info>
+
+                    EOT
             )
         ;
     }

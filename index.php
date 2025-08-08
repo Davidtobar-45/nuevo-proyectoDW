@@ -47,13 +47,15 @@ if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
  */
 
 // LOAD OUR PATHS CONFIG FILE
-// This is the line that might need to be changed, depending on your folder structure.
-require FCPATH . './app/Config/Paths.php';
-// ^^^ Change this line if you move your application folder
+// Adjust this line because 'app' folder is now in the same level as this index.php
+require FCPATH . 'app/Config/Paths.php';
 
 $paths = new Paths();
 
 // LOAD THE FRAMEWORK BOOTSTRAP FILE
+// Adjust this line because 'system' folder path is set inside $paths,
+// and vendor folder is also at the same level as index.php
+require FCPATH . 'vendor/autoload.php';
 require $paths->systemDirectory . '/Boot.php';
 
 exit(Boot::bootWeb($paths));

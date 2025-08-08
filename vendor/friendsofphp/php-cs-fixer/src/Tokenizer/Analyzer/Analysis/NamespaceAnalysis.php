@@ -19,7 +19,7 @@ namespace PhpCsFixer\Tokenizer\Analyzer\Analysis;
  *
  * @internal
  */
-final class NamespaceAnalysis
+final class NamespaceAnalysis implements StartEndTokenAwareAnalysis
 {
     /**
      * The fully qualified namespace name.

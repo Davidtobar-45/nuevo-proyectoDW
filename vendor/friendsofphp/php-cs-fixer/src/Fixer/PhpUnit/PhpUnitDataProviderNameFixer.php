@@ -138,39 +138,29 @@ class FooTest extends TestCase {
 
     protected function applyPhpUnitClassFix(Tokens $tokens, int $startIndex, int $endIndex): void
     {
-        $dataProviders = (new DataProviderAnalyzer())->getDataProviders($tokens, $startIndex, $endIndex);
-
-        $methodsProviders = [];
-        $providersMethods = [];
-        foreach ($dataProviders as $dataProviderAnalysis) {
+        $dataProviderAnalyzer = new DataProviderAnalyzer();
+        foreach ($dataProviderAnalyzer->getDataProviders($tokens, $startIndex, $endIndex) as $dataProviderAnalysis) {
+            $testIndices = [];
             foreach ($dataProviderAnalysis->getUsageIndices() as [$usageIndex]) {
-                $methodIndex = $tokens->getNextTokenOfKind($usageIndex, [[\T_FUNCTION]]);
-                $methodsProviders[$methodIndex][$dataProviderAnalysis->getName()] = $usageIndex;
-                $providersMethods[$dataProviderAnalysis->getName()][$methodIndex] = $usageIndex;
+                $testIndices[$tokens->getNextTokenOfKind($usageIndex, [[\T_FUNCTION]])] = $usageIndex;
             }
-        }
-
-        foreach ($dataProviders as $dataProviderAnalysis) {
-            // @phpstan-ignore offsetAccess.notFound
-            if (\count($providersMethods[$dataProviderAnalysis->getName()]) > 1) {
+            if (\count($testIndices) > 1) {
                 continue;
             }
 
-            $methodIndex = $tokens->getNextTokenOfKind($dataProviderAnalysis->getUsageIndices()[0][0], [[\T_FUNCTION]]);
-            // @phpstan-ignore offsetAccess.notFound
-            if (\count($methodsProviders[$methodIndex]) > 1) {
-                continue;
-            }
-
-            $dataProviderNewName = $this->getDataProviderNameForUsageIndex($tokens, $methodIndex);
+            $dataProviderNewName = $this->getDataProviderNameForUsageIndex($tokens, reset($testIndices));
             if (null !== $tokens->findSequence([[\T_FUNCTION], [\T_STRING, $dataProviderNewName]], $startIndex, $endIndex)) {
                 continue;
             }
 
             foreach ($dataProviderAnalysis->getUsageIndices() as [$usageIndex]) {
+                if (substr_count($tokens[$usageIndex]->getContent(), '@dataProvider') > 1) {
+                    continue;
+                }
+
                 $tokens[$dataProviderAnalysis->getNameIndex()] = new Token([\T_STRING, $dataProviderNewName]);
 
-                $newContent = $tokens[$usageIndex]->isGivenKind(\T_DOC_COMMENT)
+                $newCommentContent = $tokens[$usageIndex]->isGivenKind(\T_DOC_COMMENT)
                     ? Preg::replace(
                         \sprintf('/(@dataProvider\s+)%s/', $dataProviderAnalysis->getName()),
                         \sprintf('$1%s', $dataProviderNewName),
@@ -178,7 +168,7 @@ class FooTest extends TestCase {
                     )
                     : \sprintf('%1$s%2$s%1$s', $tokens[$usageIndex]->getContent()[0], $dataProviderNewName);
 
-                $tokens[$usageIndex] = new Token([$tokens[$usageIndex]->getId(), $newContent]);
+                $tokens[$usageIndex] = new Token([$tokens[$usageIndex]->getId(), $newCommentContent]);
             }
         }
     }

@@ -89,7 +89,8 @@ final class NullableTypeDeclarationForDefaultNullValueFixer extends AbstractFixe
                     new VersionSpecification(8_02_00),
                     ['use_nullable_type_declaration' => false]
                 ),
-            ]
+            ],
+            'Rule is applied only in a PHP 7.1+ environment.'
         );
     }
 

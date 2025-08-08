@@ -25,18 +25,15 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * @internal
  */
-#[AsCommand(name: 'documentation', description: 'Dumps the documentation of the project into its "/doc" directory.')]
+#[AsCommand(name: 'documentation')]
 final class DocumentationCommand extends Command
 {
-    /** @TODO PHP 8.0 - remove the property */
     protected static $defaultName = 'documentation';
-
-    /** @TODO PHP 8.0 - remove the property */
-    protected static $defaultDescription = 'Dumps the documentation of the project into its "/doc" directory.';
 
     private Filesystem $filesystem;
 
@@ -48,7 +45,10 @@ final class DocumentationCommand extends Command
 
     protected function configure(): void
     {
-        $this->setAliases(['doc']);
+        $this
+            ->setAliases(['doc'])
+            ->setDescription('Dumps the documentation of the project into its "/doc" directory.')
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -78,6 +78,7 @@ final class DocumentationCommand extends Command
             );
         }
 
+        /** @var SplFileInfo $file */
         foreach (
             (new Finder())->files()
                 ->in($locator->getFixersDocumentationDirectoryPath())
@@ -95,6 +96,7 @@ final class DocumentationCommand extends Command
 
         // RuleSet docs.
 
+        /** @var SplFileInfo $file */
         foreach ((new Finder())->files()->in($locator->getRuleSetsDocumentationDirectoryPath()) as $file) {
             $this->filesystem->remove($file->getPathname());
         }

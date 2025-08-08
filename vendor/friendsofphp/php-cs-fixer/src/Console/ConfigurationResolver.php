@@ -232,8 +232,6 @@ final class ConfigurationResolver
                 }
 
                 $configFileBasename = basename($configFile);
-
-                /** @TODO v4 drop handling (triggering error) for v2 config names */
                 $deprecatedConfigs = [
                     '.php_cs' => '.php-cs-fixer.php',
                     '.php_cs.dist' => '.php-cs-fixer.dist.php',
@@ -570,8 +568,6 @@ final class ConfigurationResolver
         $candidates = [
             $configDir.\DIRECTORY_SEPARATOR.'.php-cs-fixer.php',
             $configDir.\DIRECTORY_SEPARATOR.'.php-cs-fixer.dist.php',
-
-            // @TODO v4 drop handling (triggering error) for v2 config names
             $configDir.\DIRECTORY_SEPARATOR.'.php_cs', // old v2 config, present here only to throw nice error message later
             $configDir.\DIRECTORY_SEPARATOR.'.php_cs.dist', // old v2 config, present here only to throw nice error message later
         ];
@@ -579,8 +575,6 @@ final class ConfigurationResolver
         if ($configDir !== $this->cwd) {
             $candidates[] = $this->cwd.\DIRECTORY_SEPARATOR.'.php-cs-fixer.php';
             $candidates[] = $this->cwd.\DIRECTORY_SEPARATOR.'.php-cs-fixer.dist.php';
-
-            // @TODO v4 drop handling (triggering error) for v2 config names
             $candidates[] = $this->cwd.\DIRECTORY_SEPARATOR.'.php_cs'; // old v2 config, present here only to throw nice error message later
             $candidates[] = $this->cwd.\DIRECTORY_SEPARATOR.'.php_cs.dist'; // old v2 config, present here only to throw nice error message later
         }
