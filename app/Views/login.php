@@ -21,7 +21,7 @@
             width: 100%;
             max-width: 400px;
         }
-    </style>
+    </style>  
 </head>
 <body>
     <div class="login-box">
