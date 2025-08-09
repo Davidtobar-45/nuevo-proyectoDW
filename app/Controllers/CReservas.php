@@ -14,7 +14,8 @@ class CReservas extends BaseController
         // Validar datos
         $reglas = [
             'nombre' => 'required|min_length[3]',
-            'tipo_vehiculo' => 'required|in_list[Auto,Moto]',
+            // Aquí agregamos más tipos de vehículos válidos para que no falle la validación
+            'tipo_vehiculo' => 'required|in_list[Auto,Moto,Camioneta,4x4]',
             'placa' => 'required|min_length[6]',
             'fecha' => 'required|valid_date',
             'hora_ingreso' => 'required',
@@ -24,7 +25,7 @@ class CReservas extends BaseController
         ];
 
         if (!$this->validate($reglas)) {
-            return redirect()->to(base_url('/reservas'))->with('mensaje', 'Error: Datos no válidos');
+            return redirect()->to(base_url('/reservas'))->with('mensaje', 'Error: Datos no válidos')->withInput();
         }
 
         // Preparar datos
@@ -41,19 +42,17 @@ class CReservas extends BaseController
 
         // Llamar al método del modelo que usa el SP
         if ($modelo->InsertarReservaSP($datos)) {
-            // Redirigir a la página de pagos
+            // Redirigir a la página de pagos con mensaje de éxito
             return redirect()->to(base_url('/pagos'))->with('mensaje', 'Reserva guardada con éxito');
         } else {
-            return redirect()->to(base_url('/reservas'))->with('mensaje', 'Error al guardar la reserva');
+            return redirect()->to(base_url('/reservas'))->with('mensaje', 'Error al guardar la reserva')->withInput();
         }
     }
+
     public function verAuto()
     {
-        // Obtener los datos de las reservas
         $modelo = new ModeloReserva();
         $reservas = $modelo->obtenerReservas();
-
-        // Pasar los datos a la vista
         $data['reservas'] = $reservas;
         return view('verauto', $data);
     }
@@ -66,8 +65,8 @@ class CReservas extends BaseController
         } else {
             echo 'Error de conexión, a gastronomía';
         }
-        
     }
+
     public function testconexionOracle()
     {
         try {
