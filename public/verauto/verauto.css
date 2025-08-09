@@ -1,0 +1,50 @@
+body {
+    padding: 20px;
+    background-color: #ffffff; /* Color de fondo para el body */
+    background-image: url("https://www.expoknews.com/wp-content/uploads/2023/05/impacto-ambiental-de-estacionamientos-1.jpg");
+    background-size: cover; /* Hace que la imagen cubra todo el fondo */
+    background-position: center; /* Centra la imagen en la pantalla */
+}
+.container {
+    background-color: #007bff; /* Fondo azul para el contenedor */
+    padding: 20px; /* Espaciado dentro del contenedor */
+    border-radius: 10px; /* Bordes redondeados si lo deseas */
+}
+
+.container h1, .container p {
+    color: white; /* Hacer que las letras sean blancas dentro del contenedor */
+}
+
+/* Estilo para el div con fondo azul */
+.fondo-azul {
+    background-color: #2665d1; /* Fondo azul */
+    color: white; /* Texto blanco */
+    padding: 20px;
+    border-radius: 10px; /* Opcional, para bordes redondeados */
+    margin-bottom: 20px; /* Separación entre el texto y el resto del contenido */
+}
+
+/* Tabla de reservas */
+.tablaReservas {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #203243; /* Fondo azul claro para toda la tabla */
+    border-radius: 10px; /* Opcional, para bordes redondeados */
+    overflow: hidden; /* Para evitar que los bordes de la tabla sobresalgan */
+}
+
+.tablaReservas th, .tablaReservas td {
+    padding: 10px;
+    text-align: left;
+    color: white; /* Cambié el color del texto a blanco para que sea visible sobre el fondo azul */
+    border-bottom: 1px solid #ddd;
+}
+
+.tablaReservas th {
+    background-color: #0015ff; /* Fondo azul más oscuro para los encabezados */
+    color: white; /* Color blanco para el texto en los encabezados */
+}
+
+.btn-accion {
+    margin: 2px;
+}

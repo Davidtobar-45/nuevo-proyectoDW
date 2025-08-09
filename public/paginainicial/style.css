@@ -1,0 +1,110 @@
+body {
+  background-color: #0d1b2a;
+  color: #e0e6f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.containerGestionEstacionamientos {
+  background-color: #112240;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 25px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.headerLogo {
+  width: 60px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px #0a1635;
+}
+
+.containerGestionEstacionamientos h1 {
+  font-size: 1.8rem;
+  color: #a9c0ff;
+}
+
+.mainContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.filaPrincipal {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.columna {
+  background-color: #1b2a48;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 15px #142c64;
+  flex: 1 1 450px;
+  max-width: 48%;
+}
+
+.imagenCentroComercial,
+.imagenTarjeta {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 12px #0a1635;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.informacionPagina h3,
+.tituloTarjeta {
+  color: #a9c0ff;
+  margin-bottom: 10px;
+}
+
+.informacionPagina p,
+.textoTarjeta {
+  color: #c0c8e0;
+  margin-bottom: 10px;
+}
+
+.tarjetaDisponibilidad {
+  background-color: #142c64;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #0a1635;
+  overflow: hidden;
+}
+
+.cuerpoTarjeta {
+  padding: 15px 20px;
+  text-align: center;
+}
+
+.botonConsultar {
+  display: inline-block;
+  background-color: #274690;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 10px 25px;
+  text-decoration: none;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.botonConsultar:hover,
+.botonConsultar:focus {
+  background-color: #1b2768;
+  color: #a9c0ff;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .filaPrincipal {
+    flex-direction: column;
+  }
+  .columna {
+    max-width: 100%;
+  }
+}

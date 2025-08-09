@@ -1,0 +1,59 @@
+/* Centrar el contenido */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    margin: 0;
+    background-image: url("https://www.expoknews.com/wp-content/uploads/2023/05/impacto-ambiental-de-estacionamientos-1.jpg");
+    background-size: cover; /* Hace que la imagen cubra todo el fondo */
+    background-position: center; /* Centra la imagen en la pantalla */
+}
+
+.contenedorReserva {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente para que se vea la imagen detrás */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.tablaReserva {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.tablaReserva th, .tablaReserva td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tablaReserva th {
+    background-color: #007bff;
+    color: white;
+}
+
+.formularioReserva input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.botonReservar {
+    width: 100%;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.botonReservar:hover {
+    background-color: darkgreen;
+}
