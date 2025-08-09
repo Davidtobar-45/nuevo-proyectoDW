@@ -15,27 +15,19 @@ class ModeloPago extends Model
 
     public function InsertarPagoSP($datos)
     {
-        try {
-            // Desglose de los datos
-            $metodo_pago = $datos['metodo_pago'];
-            $nombre_titular = $datos['nombre_titular'];
-            $numero_tarjeta = $datos['numero_tarjeta'];
-            $fecha_expiracion = $datos['fecha_expiracion'];
-            $cvv = $datos['cvv'];
+        $metodo_pago = $datos['metodo_pago'];
+        $nombre_titular = $datos['nombre_titular'];
+        $numero_tarjeta = $datos['numero_tarjeta'];
+        $fecha_expiracion = $datos['fecha_expiracion'];
+        $cvv = $datos['cvv'];
 
-            // Llamar al procedimiento almacenado
-            $query = $this->db->query('CALL SP_INSERT_PAGO(?, ?, ?, ?, ?)', [
-                $metodo_pago, $nombre_titular, $numero_tarjeta, $fecha_expiracion, $cvv
-            ]);
+        $result = $this->db->query('CALL SP_INSERT_PAGO(?, ?, ?, ?, ?)', [
+            $metodo_pago, $nombre_titular, $numero_tarjeta, $fecha_expiracion, $cvv
+        ]);
 
-            // Validar la inserción
-            if ($query) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        // Limpiar resultados pendientes para evitar errores en MySQL
+        while ($this->db->connID->more_results() && $this->db->connID->next_result()) {}
+
+        return $result ? true : false;
     }
 }
