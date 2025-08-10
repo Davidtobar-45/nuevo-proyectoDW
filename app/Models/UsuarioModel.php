@@ -1,12 +1,15 @@
-<?php
-namespace App\Models;
+<?php namespace App\Models;
 
 use CodeIgniter\Model;
 
 class UsuarioModel extends Model
 {
-    protected $table = 'tbl_usuarios';
-    protected $primaryKey = 'usu_id';
-    protected $allowedFields = ['usu_nombre', 'usu_correo', 'usu_pass', 'usu_cedula', 'usu_estado'];
+    protected $table      = 'usuarios';
+    protected $primaryKey = 'id';
+
+    protected $allowedFields = ['nombre', 'correo', 'cedula', 'estado'];
+
     protected $returnType = 'array';
+
+    protected $useTimestamps = false;
 }
